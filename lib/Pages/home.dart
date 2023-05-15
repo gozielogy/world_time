@@ -12,15 +12,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Map data = {};
 
-  @override
-  void initState() {
-    super.initState();
-    Timer.periodic(Duration(seconds: 5), (timer) {
-      setState(() {
-        updateTime() {}
-      });
-    });
-  }
 
   void updateTime() async {
     WorldTime instance = WorldTime(
