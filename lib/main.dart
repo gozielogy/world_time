@@ -11,7 +11,6 @@ routes: {
   "/home": (context) => Home(),
   "/location":(context) => ChooseLocation(),
 },
-
 ));
 
 

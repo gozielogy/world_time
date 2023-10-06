@@ -8,6 +8,7 @@ class ChooseLocation extends StatefulWidget {
 
 class _ChooseLocationState extends State<ChooseLocation> {
   List<WorldTime> locations = [
+    WorldTime(location: 'Denver', flag: 'usa.png', url: 'America/Denver'),
     WorldTime(
         location: 'Port Harcourt', flag: 'nigeria.png', url: 'Africa/Lagos'),
     WorldTime(location: 'Lagos', flag: 'nigeria.png', url: 'Africa/Lagos'),
@@ -49,9 +50,10 @@ class _ChooseLocationState extends State<ChooseLocation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF1E6FF),
       appBar: AppBar(
-        backgroundColor: Colors.blue[900],
-        title: Text('Set location'),
+        backgroundColor: const Color(0xFF6F35A5),
+        title: const Text('Set location'),
         centerTitle: true,
       ),
       body: ListView.builder(

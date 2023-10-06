@@ -1,10 +1,10 @@
-import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:world_time/services/worldtime.dart';
-import 'choose_location.dart';
 
 class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
   State<Home> createState() => _HomeState();
 }
@@ -12,11 +12,10 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Map data = {};
 
-
   void updateTime() async {
     WorldTime instance = WorldTime(
         location: data['location'], flag: data['flag'], url: data['url']);
-    await instance.getTime;
+    instance.getTime;
     print(instance.localtime);
   }
 
@@ -33,26 +32,26 @@ class _HomeState extends State<Home> {
             image:
                 DecorationImage(image: AssetImage(bgImage), fit: BoxFit.cover)),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
+          padding: const EdgeInsets.only(top: 150),
           child: Center(
             child: Column(
               children: [
                 Text(
                   data['location'],
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.w600,
                       color: Colors.white),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
                   data['time'],
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 40,
                       fontWeight: FontWeight.w800,
                       color: Colors.white),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 ),
                 TextButton.icon(
@@ -60,18 +59,20 @@ class _HomeState extends State<Home> {
                     dynamic result =
                         await Navigator.pushNamed(context, "/location");
                     setState(() {
-                      data = {
-                        'location': result['location'],
-                        'time': result['time'],
-                        'flag': result['flag'],
-                        'isDaytime': result['isDaytime'],
-                        'url': result['url'],
-                      };
+                      if (result != null) {
+                        data = {
+                          'location': result['location'],
+                          'time': result['time'],
+                          'flag': result['flag'],
+                          'isDaytime': result['isDaytime'],
+                          'url': result['url'],
+                        };
+                      }
                     });
                   },
-                  icon:
-                      Icon(CupertinoIcons.location_solid, color: Colors.white),
-                  label: Text(
+                  icon: const Icon(CupertinoIcons.location_solid,
+                      color: Colors.white),
+                  label: const Text(
                     "Change location",
                     style: TextStyle(color: Colors.white),
                   ),

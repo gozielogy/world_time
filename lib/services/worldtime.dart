@@ -13,15 +13,14 @@ class WorldTime {
   Future<void> getTime() async {
     try {
       http.Response responseData =
-          await http.get(Uri.parse('https://worldtimeapi.org/api/timezone/$url'));
+          await http.get(Uri.parse('https://timeapi.io/api/Time/current/zone?timeZone=$url'));
       Map responseInfo = jsonDecode(responseData.body);
-      // print(responseInfo);
-      String datetime = responseInfo['datetime'];
-      String offset = responseInfo['utc_offset'].substring(0,3);
-
+      
+      String datetime = responseInfo['dateTime'];
+      
       // create datetime object
       DateTime now = DateTime.parse(datetime);
-      now = now.add(Duration(hours: int.parse(offset)));
+      
 
       // Set the time property
       localtime = DateFormat.jm().format(now);
